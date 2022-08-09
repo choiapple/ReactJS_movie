@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+    </body>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        const root = document.getElementById("root");
+        function Title(){
+            return (
+                <h3 id="titles" onMouseEnter={()=>console.log("mouse enter")}>
+                    Hello I'm a title 
+                </h3>
+            );
+        }
+        // const h3 = React.createElement(
+        //     "h3", 
+        // {
+        //     id:"title",
+        //     onMouseEnter: () => console.log("mouse enter"),
+        // }, 
+        // "Hello I'm a span"
+        // ); // React.createElement("span", {id:"sexy-span"})
+        // 이런 식으로 하면 id나 class를 넣을수 있음 첫번째에는 html의 유효한 태그
+        // 두번째에 {id : "sexy-span", style: {color:"red"}}, 할수도있음
+        // 3번째 argument는 span안의 내용임 innerText임
+        const Button = () =>(<button style={{
+            backgroundColor: "tomato",
+        }}
+        onClick={()=> console.log("im clicked")}
+        >Click me
+        </button>);
+        // const btn = React.createElement(
+        //     "button", 
+        //     {
+        //         onClick: () => console.log('im clicked'),
+        //         style:{
+        //             backgroundColor:"tomato",
+        //         },
+        //     }, 
+        //     "Click me"
+        //     );
+        // const container = React.createElement("div", null, [Title, Button]);
+        // 이렇게 array형태로 넣어주고 이 container를 랜더링 해주는거임
+        const Container = ()=> (
+            <div>
+                <Title /> 
+                <Button />
+            </div>
+        );
+
+        ReactDOM.render(<Container/>, root); // root안에 span을 넣으라는 거임
+    </script>
+</html>
+
+<!-- 컴포넌트의 첫글자는 대문자여야한다(Title, Button) -->

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+    </body>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        const root = document.getElementById("root");
+        function App() {
+            const [counter, modifier] = React.useState(0)
+            const onClick = () => {
+                counter = counter +1;
+                console.log(counter);
+            }
+            return (
+                <div>
+                <h3>Total clicks: {counter}</h3>
+                <button onClick={onClick}>Click me</button>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, root);// root안에 span을 넣으라는 거임
+    </script>
+</html>
+
+<!-- 컴포넌트의 첫글자는 대문자여야한다(Title, Button) -->
+<!-- 여기서 ReactDOM.render(<Container/>, root);이 부분만 ui를 바꿔주는거임
+그래서 ui를 바꿔줄게 필요함-->
+<!-- 그래서 첫번째 방법은 onClick할때마다 render를 해주는거임 -->
+<!--  -->
