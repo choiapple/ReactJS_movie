@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    function Btn({ text, changeValue }) {
+        console.log(text, "rerendered");
+        return (<button
+            onClick={changeValue}
+            style={{
+                backgroundColor: "tomato",
+                color: "white",
+                padding: "10px 20px",
+                border: 0,
+                borderRadius: 10
+            }}
+        >
+            {text}
+        </button>)
+    }
+    const MemorizedBtn = React.memo(Btn);
+    function App() {
+        const [value, setValue] = React.useState("Save Changes");
+        const changeValue = () => setValue("Revert Changes");
+        return (
+            <div>
+                <MemorizedBtn text={value} changeValue={changeValue} />
+                <MemorizedBtn text="Continue" />
+            </div>
+        );
+    }
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);// root안에 span을 넣으라는 거임
+</script>
+
+</html>
+
+<!-- 컴포넌트의 첫글자는 대문자여야한다(Title, Button) -->
+<!-- 여기서 ReactDOM.render(<Container/>, root);이 부분만 ui를 바꿔주는거임 
+    그래서 ui를 바꿔줄게 필요함-->
+<!-- 그래서 첫번째 방법은 onClick할때마다 render를 해주는거임 -->
+<!-- 컴퍼넌트가 React.memo()로 래핑 될 때, React는 컴퍼넌트를 렌더링하고 결과를 
+    메모이징(Memoizing)한다. 
+    그리고 다음 렌더링이 일어날 때 props가 같다면, 
+    React는 메모이징(Memoizing)된 내용을 재사용한다 -->
